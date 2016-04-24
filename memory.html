@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Memory Game (not a lousy copy...from school) </title>
+	<style>
+	#wrapper {
+			  min-height:650px;
+			  margin: auto;
+			  border:5px outset grey;
+			  background: linear-gradient(to right, white, gray);}
+
+	.black   {min-height:220px;
+			  width:220px;
+			  display: inline-block;
+			  background-color:green;
+			  /*border:5px outset grey;*/
+			  margin:8px;
+
+			  }
+
+	.visible {min-height:220px;
+			  width:220px;
+			  display: inline-block;
+			  background-color:white;
+			  /*border:5px outset grey*/;
+			  margin:0px;
+			  }
+
+	#letter  {line-height:180px;
+			  text-align:center;}
+
+	#begin  {text-align:center;
+			 border:1px solid grey;
+			 margin:auto;}
+	</style>
+</head>
+<body>
+	<div id="wrapper" class="container">
+		<input type="button" id="begin" value="Begin Game"/>
+		<div class="row" id="container">
+		
+		</div>
+	</div>
+
+	<script type="text/javascript">
+
+/////////////////////////////GENERAL PURPOSE VARIABLES//////////////////////////////
+		var mainArray = ["A","A","B","B","C","C","D","D","E","E","F","F","G","G","H","H"];
+		var pairArray = [];
+		var targetArray = [];
+		var matchArray =[];
+		var wrapper;
+		var content;
+		var button = document.getElementById("begin");
+//////////////////////////////VARIABLES FOR THE SHUFFLE METHOD//////////////////////////////
+		var holder;
+		var random;
+
+///////////////ACTION BEGINS///////////////////////////////////////////
+		button.addEventListener("click", letTheGameBegin, false);
+
+
+
+
+		Array.prototype.shuffle = function() {
+			for(i = 0; i < 7; i++) {
+				for(j = this.length; j > 0; j--) {
+					random = Math.floor(Math.random() * j);
+					holder = this[random];
+					this[random] = this[(j-1)];
+					this[(j-1)] = holder;
+				}
+			}
+		return this
+		}
+		//console.log(mainArray.shuffle()); CHECKING MYSELF... CHECK:SUCCESS!
+
+		function letTheGameBegin () {
+			container = document.getElementById("container");
+			mainArray.shuffle();
+			for(i = 0; i < mainArray.length; i++) {
+				container.innerHTML += "<div class='black' id='" + i + "'>" + "<h1 id='letter'>" + mainArray[i] + "</h1>"+ "</div>"
+
+				
+			}
+			singTileId = document.getElementsByClassName("black");
+			for(j = 0; j < singTileId.length; j++)
+				singTileId[j].addEventListener("click", flipTile, false);
+		}
+
+		function flipTile (e) {
+			var target = e.target;
+			//console.log(target); //CHECKING MYSELF...GREAT SUCCESS!
+			if(pairArray.length < 2) {
+
+				if(pairArray.length == 0) {
+					pairArray.push(target.textContent);
+					targetArray.push(target);
+					 target.className ="visible";
+					 console.log(targetArray[0]);
+					 console.log(pairArray[0]);
+
+				}else{
+					pairArray.push(target.textContent);
+					targetArray.push(target);
+					 target.className ="visible";
+					 console.log(targetArray[1]);
+					 console.log(pairArray[1]);
+				
+					if (pairArray[0] == pairArray[1]) {
+					
+						matchArray.push(pairArray[0]);
+						matchArray.push(pairArray[1]);
+					
+						console.log(pairArray[0]);
+						console.log(pairArray[1]);
+						console.log("success");
+					    pairArray = [];
+
+						if (targetArray.length == mainArray.length) {alert("Congratulations! You won the game!!!");
+						}
+
+						console.log(pairArray.length);
+						console.log(mainArray.length);
+					}else { 
+					    function reTurn (){
+					    	
+						 	targetArray[0].className = "black";
+						 	console.log(targetArray[0].getAttribute("class"));
+
+						 	targetArray[1].className = "black";
+						 	console.log(targetArray[1].getAttribute("class"));
+						 	
+						 	pairArray = [];
+					    	targetArray = [];
+						 }
+						
+						function timer () { var sg = setTimeout(reTurn, 1500);
+											}
+						timer();
+
+					}
+				}
+		
+			}
+
+		}
+
+		
+
+		console.log(mainArray.length);
+		console.log(pairArray.length);
+		
+
+	</script>
+</body>
+</html>
