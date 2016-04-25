@@ -65,28 +65,28 @@
 
 	<script type="text/javascript">
 
-/////////////////////////////GENERAL PURPOSE VARIABLES//////////////////////////////
+//////////////////////////GENERAL PURPOSE VARIABLES//////////////////////////////
 		var mainArray = ["A","A","B","B","C","C","D","D","E","E","F","F","G","G","H","H"];
 		var flippedArray = [];
 		var targetArray = [];
 		var matchArray =[];
 		var wrapper;
 		var content;
-		var button = document.getElementById("begin");
+		var beginBtn = document.getElementById("begin");
+		var singTileId;
+///////////////////////////USER PERFORMANCE VARIABLES//////////////////////////////
 		var moveCount = 0;
 		var winCount = 0;
 		var moveCountHold = document.getElementById("moves").innerHTML = "Your Moves : " + moveCount;
 		var winCountHold = document.getElementById("wins").innerHTML = "Wins : " + winCount;
-//////////////////////////////VARIABLES FOR THE SHUFFLE METHOD//////////////////////////////
+///////////////////////////VARIABLES FOR THE SHUFFLE METHOD////////////////////////////
 		var holder;
 		var random;
-///////////////ACTION BEGINS///////////////////////////////////////////
-		button.addEventListener("click", letTheGameBegin, false);
+//////////////////////////ACTION BEGINS///////////////////////////////////////////
+		beginBtn.addEventListener("click", letTheGameBegin, false); // Adding event listener to my begin button
+		
 
-
-
-
-		Array.prototype.shuffle = function() {
+		Array.prototype.shuffle = function() { // Creating a new shuffle method for Array objects
 			for(i = 0; i < 7; i++) {
 				for(j = this.length; j > 0; j--) {
 					random = Math.floor(Math.random() * j);
@@ -97,74 +97,67 @@
 			}
 		return this
 		}
-		//console.log(mainArray.shuffle()); CHECKING MYSELF... CHECK:SUCCESS!
+//console.log(mainArray.shuffle()); CHECKING MYSELF... CHECK:SUCCESS!
 
-		function letTheGameBegin () {
+		function letTheGameBegin () { //Generating new board 
 			container = document.getElementById("container");
 			mainArray.shuffle();
 			for(i = 0; i < mainArray.length; i++) {
 				container.innerHTML += "<div class='black' id='" + i + "'>" + mainArray[i] + "</div>";
-
-				
 			}
-			singTileId = document.getElementsByClassName("black");
-			for(j = 0; j < singTileId.length; j++)
+
+			singTileId = document.getElementsByClassName("black"); // Adding event listeners to tiles
+			for(j = 0; j < singTileId.length; j++) {
 				singTileId[j].addEventListener("click", flipTile, false);
+			}
 		}
 
 		function flipTile (e) {
+
 			var target = e.target;
-			//console.log(target); //CHECKING MYSELF...GREAT SUCCESS!
+//console.log(target); //CHECKING MYSELF...GREAT SUCCESS!
 			if(flippedArray.length < 2) {
 
-				if(flippedArray.length == 0) {
-					flippedArray.push(target.textContent);
-					targetArray.push(target);
-					 target.className ="visible";
-					 // console.log(targetArray[0]);
-					 // console.log(pairArray[0]);
+				if(flippedArray.length == 0) { // if no cards have been flipped, then...
 
-				}else{
 					flippedArray.push(target.textContent);
 					targetArray.push(target);
-					 target.className ="visible";
-					 // console.log(targetArray[1]);
-					 // console.log(pairArray[1]);
+					target.className ="visible";
+					 
+				}else{  // if there is 1 card flipped already, then...
+
+					flippedArray.push(target.textContent);
+					targetArray.push(target);
+					target.className ="visible";
 				
-					if (flippedArray[0] == flippedArray[1]) {
+					if (flippedArray[0] == flippedArray[1]) { // if the two cards match, then...
 					
 						matchArray.push(flippedArray[0]);
 						matchArray.push(flippedArray[1]);
 					
-						// console.log(pairArray[0]);
-						// console.log(pairArray[1]);
-						// console.log("success");
 					    flippedArray = [];
-
 
 					    moveCount++;
 					    moveCountHold = document.getElementById("moves").innerHTML = "Your Moves : " + moveCount;
 
-						if (matchArray.length == mainArray.length) {alert("Congratulations! You won the game!!!");
+						if (matchArray.length == mainArray.length) { // if all cards have been flipped, then...
+
+							alert("Congratulations! You won the game!!!");
+
 							winCount++;
 							winCountHold = document.getElementById("wins").innerHTML = "Wins : " + winCount;
 						}
-
-						// console.log(pairArray.length);
-						// console.log(mainArray.length);
-					}else { 
+					}else { // if the two cards don't match, then...
 					    function reTurn (){
 					    	
 						 	targetArray[(targetArray.length-1)].className = "black";
-						 	// console.log(targetArray[0].getAttribute("class"));
-
 						 	targetArray[(targetArray.length-2)].className = "black";
-						 	// console.log(targetArray[1].getAttribute("class"));
 						 	
 						 	flippedArray = [];
 					    	targetArray = [];
+
 					    	moveCount++;
-					    	// console.log(moveCount);
+					
 					    	moveCountHold = document.getElementById("moves").innerHTML = "Your Moves : " + moveCount;
 						 }
 						
@@ -174,17 +167,10 @@
 
 					}
 				}
-		
 			}
-
 		}
 
 		
-
-		// console.log(mainArray.length);
-		// console.log(flippedArray.length);
-		// console.log(moveCount);
-
 	</script>
 </body>
 </html>
