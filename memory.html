@@ -6,36 +6,57 @@
 	#wrapper {
 			  min-height:650px;
 			  margin: auto;
+			  text-align:center;
 			  border:5px outset grey;
 			  background: linear-gradient(to right, white, gray);}
 
+	#moves   {width: 150px;
+			  font-size:20px;
+			  display:block;
+			  margin:auto;
+			  }
+
+	#wins   {width: 150px;
+			  font-size:20px;
+			  display:block;
+			  margin:auto;}
+
 	.black   {min-height:220px;
 			  width:220px;
+			  text-align: center;
+			  font-size: 35px;
+			  line-height: 210px;
 			  display: inline-block;
-			  background-color:green;
-			  /*border:5px outset grey;*/
+			  background-color:black;
+			  border:5px outset grey;
 			  margin:8px;
 
 			  }
 
 	.visible {min-height:220px;
 			  width:220px;
+			  text-align: center;
+			  font-size: 35px;
+			  line-height: 210px;
 			  display: inline-block;
 			  background-color:white;
-			  /*border:5px outset grey*/;
-			  margin:0px;
+			  border:5px outset grey;
+			  margin:8px;
 			  }
 
 	#letter  {line-height:180px;
 			  text-align:center;}
 
 	#begin  {text-align:center;
-			 border:1px solid grey;
+			 border:3px outset grey;
+			 font-size:20px;
 			 margin:auto;}
 	</style>
 </head>
 <body>
-	<div id="wrapper" class="container">
+	<div id="wrapper">
+			<div id="moves"></div>
+			<div id="wins"></div>
 		<input type="button" id="begin" value="Begin Game"/>
 		<div class="row" id="container">
 		
@@ -46,16 +67,19 @@
 
 /////////////////////////////GENERAL PURPOSE VARIABLES//////////////////////////////
 		var mainArray = ["A","A","B","B","C","C","D","D","E","E","F","F","G","G","H","H"];
-		var pairArray = [];
+		var flippedArray = [];
 		var targetArray = [];
 		var matchArray =[];
 		var wrapper;
 		var content;
 		var button = document.getElementById("begin");
+		var moveCount = 0;
+		var winCount = 0;
+		var moveCountHold = document.getElementById("moves").innerHTML = "Your Moves : " + moveCount;
+		var winCountHold = document.getElementById("wins").innerHTML = "Wins : " + winCount;
 //////////////////////////////VARIABLES FOR THE SHUFFLE METHOD//////////////////////////////
 		var holder;
 		var random;
-
 ///////////////ACTION BEGINS///////////////////////////////////////////
 		button.addEventListener("click", letTheGameBegin, false);
 
@@ -79,7 +103,7 @@
 			container = document.getElementById("container");
 			mainArray.shuffle();
 			for(i = 0; i < mainArray.length; i++) {
-				container.innerHTML += "<div class='black' id='" + i + "'>" + "<h1 id='letter'>" + mainArray[i] + "</h1>"+ "</div>"
+				container.innerHTML += "<div class='black' id='" + i + "'>" + mainArray[i] + "</div>";
 
 				
 			}
@@ -91,48 +115,57 @@
 		function flipTile (e) {
 			var target = e.target;
 			//console.log(target); //CHECKING MYSELF...GREAT SUCCESS!
-			if(pairArray.length < 2) {
+			if(flippedArray.length < 2) {
 
-				if(pairArray.length == 0) {
-					pairArray.push(target.textContent);
+				if(flippedArray.length == 0) {
+					flippedArray.push(target.textContent);
 					targetArray.push(target);
 					 target.className ="visible";
-					 console.log(targetArray[0]);
-					 console.log(pairArray[0]);
+					 // console.log(targetArray[0]);
+					 // console.log(pairArray[0]);
 
 				}else{
-					pairArray.push(target.textContent);
+					flippedArray.push(target.textContent);
 					targetArray.push(target);
 					 target.className ="visible";
-					 console.log(targetArray[1]);
-					 console.log(pairArray[1]);
+					 // console.log(targetArray[1]);
+					 // console.log(pairArray[1]);
 				
-					if (pairArray[0] == pairArray[1]) {
+					if (flippedArray[0] == flippedArray[1]) {
 					
-						matchArray.push(pairArray[0]);
-						matchArray.push(pairArray[1]);
+						matchArray.push(flippedArray[0]);
+						matchArray.push(flippedArray[1]);
 					
-						console.log(pairArray[0]);
-						console.log(pairArray[1]);
-						console.log("success");
-					    pairArray = [];
+						// console.log(pairArray[0]);
+						// console.log(pairArray[1]);
+						// console.log("success");
+					    flippedArray = [];
 
-						if (targetArray.length == mainArray.length) {alert("Congratulations! You won the game!!!");
+
+					    moveCount++;
+					    moveCountHold = document.getElementById("moves").innerHTML = "Your Moves : " + moveCount;
+
+						if (matchArray.length == mainArray.length) {alert("Congratulations! You won the game!!!");
+							winCount++;
+							winCountHold = document.getElementById("wins").innerHTML = "Wins : " + winCount;
 						}
 
-						console.log(pairArray.length);
-						console.log(mainArray.length);
+						// console.log(pairArray.length);
+						// console.log(mainArray.length);
 					}else { 
 					    function reTurn (){
 					    	
-						 	targetArray[0].className = "black";
-						 	console.log(targetArray[0].getAttribute("class"));
+						 	targetArray[(targetArray.length-1)].className = "black";
+						 	// console.log(targetArray[0].getAttribute("class"));
 
-						 	targetArray[1].className = "black";
-						 	console.log(targetArray[1].getAttribute("class"));
+						 	targetArray[(targetArray.length-2)].className = "black";
+						 	// console.log(targetArray[1].getAttribute("class"));
 						 	
-						 	pairArray = [];
+						 	flippedArray = [];
 					    	targetArray = [];
+					    	moveCount++;
+					    	// console.log(moveCount);
+					    	moveCountHold = document.getElementById("moves").innerHTML = "Your Moves : " + moveCount;
 						 }
 						
 						function timer () { var sg = setTimeout(reTurn, 1500);
@@ -148,9 +181,9 @@
 
 		
 
-		console.log(mainArray.length);
-		console.log(pairArray.length);
-		
+		// console.log(mainArray.length);
+		// console.log(flippedArray.length);
+		// console.log(moveCount);
 
 	</script>
 </body>
