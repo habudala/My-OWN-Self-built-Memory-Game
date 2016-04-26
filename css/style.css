@@ -1,0 +1,66 @@
+
+	#wrapper {
+			  min-height:650px;
+			  margin: auto;
+			  text-align:center;
+			  border:5px outset grey;
+			  background: linear-gradient(to right, white, gray);}
+
+	#moves   {width: 150px;
+			  font-size:20px;
+			  display:block;
+			  margin:auto;
+			  }
+
+	#wins   {width: 150px;
+			  font-size:20px;
+			  display:block;
+			  margin:auto;}
+
+	img {width:240px;
+		height:200px;
+		border:5px outset grey;
+	    }
+
+	#begin  {text-align:center;
+			 border:3px outset grey;
+			 font-size:20px;
+			 margin:auto;
+			 margin-bottom:20px;}
+
+	.miniCont {width:240px;
+			 height:200px;
+			 margin:10px;
+			 display:inline-block;
+			 			 }
+	.front  {position:absolute;
+			 transform: rotateY(0deg); /*UNNECESSARYMITS 0 BY DEFAULT */
+			 background-color:grey;
+			 width:240px;
+			 height:200px;
+			 backface-visibility: hidden;
+			 border:5px outset grey;
+			 transition:transform .5s linear 0s;}
+
+	.back  {position:absolute;
+			 transform: rotateY(180deg);
+			 width:240px;
+			 height:200px;
+			 background-color: grey;
+			 backface-visibility: hidden;
+			 border:5px outset grey;
+			 transition:transform .5s linear 0s;}
+
+	.clickedFront {
+		     transform: perspective(300px) rotateY(-180deg); /* gives depth to the flipping motion*/
+		     position:absolute;
+		    
+		 	 }
+
+	.clickedBack {
+		     transform: perspective(300px) rotateY(0deg);
+	         position:absolute;
+	        /* transition:transform .5s linear 0s;*/
+	         
+	     	 } 
+	
