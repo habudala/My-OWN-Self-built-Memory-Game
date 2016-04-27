@@ -1,18 +1,16 @@
-
-
 //////////////////////////GENERAL PURPOSE VARIABLES//////////////////////////////
-		var a = "images/1.jpg";
-		var b = "images/2.jpg";
-		var c = "images/3.jpg";
-		var d = "images/4.jpg";
-		var e = "images/5.jpg";
-		var f = "images/6.jpg";
-		var g = "images/7.jpg";
-		var h = "images/8.jpg";
-		var i = "images/9.jpg";
-		var j = "images/10.jpg";
-		
-		var mainArray = [a,a,b,b,c,c,d,d,e,e,f,f,g,g,h,h,i,i,j,j];
+		var aa = "images/1.jpg";
+		var bb = "images/2.jpg";
+		var cc = "images/3.jpg";
+		var dd = "images/4.jpg";
+		var ee = "images/5.jpg";
+		var ff = "images/6.jpg";
+		var gg = "images/7.jpg";
+		var hh = "images/8.jpg";
+		var ii = "images/9.jpg";
+		var jj = "images/10.jpg";
+
+		var mainArray = [];
 		var flippedArray = [];
 		var targetArray = [];
 		var matchArray =[];
@@ -31,6 +29,7 @@
 		var holder;
 		var random;
 //////////////////////////ACTION BEGINS///////////////////////////////////////////
+
 		beginBtn.addEventListener("click", letTheGameBegin, false); // Adding event listener to my begin button
 		resetBtn.addEventListener("click", reset, false);
 
@@ -49,9 +48,19 @@
 
 		function letTheGameBegin () { //Generating new board 
 
-			
+			switch (diff.value) {
 
-			container = document.getElementById("container");
+				case "1": mainArray = [aa,aa,bb,bb,cc,cc,dd,dd,ee,ee,ff,ff];
+				break;
+				case "2": mainArray = [aa,aa,bb,bb,cc,cc,dd,dd,ee,ee,ff,ff,gg,gg,hh,hh];
+				break;
+				 case "3": mainArray = [aa,aa,bb,bb,cc,cc,dd,dd,ee,ee,ff,ff,gg,gg,hh,hh,ii,ii,jj,jj]; 
+				break;
+				 default: mainArray = [aa,aa,bb,bb,cc,cc,dd,dd,ee,ee,ff,ff,gg,gg,hh,hh,ii,ii,jj,jj];
+
+			}
+
+		    container = document.getElementById("container");
 			mainArray.shuffle();
 			for(i = 0; i < mainArray.length; i++) {
 				miniCont = document.createElement("div");
@@ -69,12 +78,11 @@
 				miniCont.appendChild(child2);
 				container.appendChild(miniCont);
 				//console.log(container.children.length); //GREAT SUCCESS!!!
-
 			}
 			
 			singTileId = document.getElementsByClassName("miniCont"); // Adding event listeners to tiles
-			for(j = 0; j < singTileId.length; j++) {
-				singTileId[j].addEventListener("click", flipTile, false);
+			for(k = 0; k < singTileId.length; k++) {
+				singTileId[k].addEventListener("click", flipTile, false);
 					
 			}
 		}
@@ -84,12 +92,12 @@
 			moveCount = 0;
 			moveCountHold = document.getElementById("moves").innerHTML = "Your Moves : " + moveCount;
 			container.innerHTML = "";
+			mainArray =[];
 			
 		}
 
-		function flipTile (e) {
-			console.log(this);
-			console.log(e.target);
+		function flipTile () {
+			
 			if(flippedArray.length < 2) {
 
 				if(flippedArray.length == 0) { // if no cards have been flipped, then...
@@ -138,7 +146,6 @@
 					    	targetArray = [];
 
 					    	moveCount++;
-					
 					    	moveCountHold = document.getElementById("moves").innerHTML = "Your Moves : " + moveCount;
 						 }
 						
@@ -150,6 +157,4 @@
 				}
 			}
 		}
-		
-		//console.log(selene.value);
 	
