@@ -1,4 +1,5 @@
 ### My Own Memorygame Built Entirely by Myself (Not Copied in Class)
+### DISCLAIMER: I AM ONLY USING JAVASCRIPT TO BUILD THIS GAME. I AM WELL AWARE THAT THERE ARE OTHER TOOLS OUT THERE THAT WOULD MAKE IT EASIER, AND FASTER, HOWEVER IT IS MY CHOICE TO USE NOTHING BUT JS. THIS IS A PRACTICE EXERCISE, AND NOT PRODUCTION QUALITY CODE. I MAY REDO IT IN JQUERY LATER IN THE FUTURE.
 
 #### I have updated my previous memory game, and built upon the existing logic, however, I've decided to showcase this one separately, because while building this one, I had to change a lot of elements, and utilize completely different approach. This version relies heavily upon DOM traversal tools, including properties such as firstElementChild, lastElementChild, parentNode, etc. Since I had to change some major components to have it work with the images, I decided to put this one in a separete file, just as a comparison to the last (original) version. This version, however, features elements such as CSS3 flipping effects (which was a goal of mine to add to the original). 
 
@@ -9,3 +10,7 @@
 ##### - Also, I added the CSS3 flipping effect as I promised to myself. I felt like since I was using images (of animals) instead of letters, it was time to up the game, and add some fancy flipping to the party.
 
 ##### - I am adding a "reset board" button, so that the player can restart the game over at any point. The reset button also deletes the number of moves of any previous game.
+
+##### - I am adding the option to select the difficulty of the game. Depending on the difficulty, the number of tiles will readjust.
+
+##### - I am also adding custom messages based on difficulty, and the number of moves it took the user to win the game.

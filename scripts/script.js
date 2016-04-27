@@ -127,7 +127,26 @@
 
 						if (matchArray.length == mainArray.length) { // if all cards have been flipped, then...
 
-							alert("Congratulations! You won the game!!!");
+							
+							switch(diff.value) {
+								case "1": 
+									if( moveCount <= 10) {
+										alert("Congratulations! You won the game in " + moveCount + " moves!!! You are awesome!");
+									}else{alert("Congrats! See if you an do even better in the next round!");}
+									break;
+								case "2":
+									if(moveCount <= 15) {
+										alert("Congratulations! You won the game in " + moveCount + " moves!!! You are awesome!");
+									}else{alert("Congrats! See if you an do even better in the next round!");}
+									break;
+								case "3":
+									if(moveCount <= 20) {
+										alert("Congratulations! You won the game in " + moveCount + " moves!!! You are awesome!");
+									}else{alert("Congrats! See if you an do even better in the next round!");}
+									break;
+								default: alert("Congratulations! You won!!!");
+									break;
+							}
 
 							winCount++;
 							winCountHold = document.getElementById("wins").innerHTML = "Wins : " + winCount;
