@@ -92,7 +92,8 @@
 			moveCount = 0;
 			moveCountHold = document.getElementById("moves").innerHTML = "Your Moves : " + moveCount;
 			container.innerHTML = "";
-			mainArray =[];
+			mainArray = [];
+			matchArray = [];
 			
 		}
 
@@ -125,8 +126,9 @@
 					    moveCount++;
 					    moveCountHold = document.getElementById("moves").innerHTML = "Your Moves : " + moveCount;
 
-						if (matchArray.length == mainArray.length) { // if all cards have been flipped, then...
-
+						if (matchArray.length === mainArray.length) { // if all cards have been flipped, then...
+							console.log(matchArray.length);
+							console.log(mainArray.length);
 							
 							switch(diff.value) {
 								case "1": 
@@ -145,7 +147,7 @@
 									}else{alert("Congrats! See if you an do even better in the next round!");}
 									break;
 								default: alert("Congratulations! You won!!!");
-									break;
+									
 							}
 
 							winCount++;
