@@ -9,8 +9,10 @@
 		var f = "images/6.jpg";
 		var g = "images/7.jpg";
 		var h = "images/8.jpg";
+		var i = "images/9.jpg";
+		var j = "images/10.jpg";
 		
-		var mainArray = [a,a,b,b,c,c,d,d,e,e,f,f,g,g,h,h];
+		var mainArray = [a,a,b,b,c,c,d,d,e,e,f,f,g,g,h,h,i,i,j,j];
 		var flippedArray = [];
 		var targetArray = [];
 		var matchArray =[];
@@ -18,6 +20,7 @@
 		var content;
 		var beginBtn = document.getElementById("begin");
 		var resetBtn = document.getElementById("reset");
+		var diff = document.getElementById("selene");
 		var singTileId;
 ///////////////////////////USER PERFORMANCE VARIABLES//////////////////////////////
 		var moveCount = 0;
@@ -45,6 +48,9 @@
 //console.log(mainArray.shuffle()); CHECKING MYSELF... CHECK:SUCCESS!
 
 		function letTheGameBegin () { //Generating new board 
+
+			
+
 			container = document.getElementById("container");
 			mainArray.shuffle();
 			for(i = 0; i < mainArray.length; i++) {
@@ -81,8 +87,9 @@
 			
 		}
 
-		function flipTile () {
-
+		function flipTile (e) {
+			console.log(this);
+			console.log(e.target);
 			if(flippedArray.length < 2) {
 
 				if(flippedArray.length == 0) { // if no cards have been flipped, then...
@@ -135,7 +142,7 @@
 					    	moveCountHold = document.getElementById("moves").innerHTML = "Your Moves : " + moveCount;
 						 }
 						
-						function timer () { var sg = setTimeout(reTurn, 1500);
+						function timer () { var timeSet = setTimeout(reTurn, 1500);
 											}
 							timer();
 
@@ -143,6 +150,6 @@
 				}
 			}
 		}
-
 		
+		//console.log(selene.value);
 	

@@ -17,11 +17,23 @@
 			  display:block;
 			  margin:auto;}
 
+
 	img {width:240px;
 		height:200px;
 		border:5px outset grey;
-		/*backface-visibility: :hidden;*/
 	    }
+
+	#selene  {
+			  display:block;
+			 text-align:center;
+			 margin:auto;
+			 font-size:15px;
+			 margin-bottom:5px;
+			 background-color:rgba(12,75,150,0.3);
+			 }
+
+	option {padding:15px;
+			background-color:rgba(12,75,150,0.1)}
 
 	#begin  {text-align:center;
 			 border:3px outset grey;
@@ -47,7 +59,7 @@
 			 height:200px;
 			 backface-visibility: hidden;
 			 border:5px outset grey;
-			 transition: transform .5s linear 0s;}
+			 transition: transform 0.5s linear 0s;}
 		
 	.back  {position:absolute;
 			 transform: perspective(400px) rotateY(180deg);
@@ -56,11 +68,9 @@
 			 backface-visibility: hidden;
 			 background-color: grey;
 			 border:5px outset grey;
-			 transition:transform .5s linear 0s;}
+			 transition:transform 0.5s linear 0s;}
 
 	.clickedFront {
-		   
-		    background-color:grey;
 		    transition:transform 0.5s linear 0s;
 		    backface-visibility: hidden;
 		    transform: perspective(400px) rotateY(-180deg); /* persp. gives depth to the flipping motion*/
@@ -68,10 +78,8 @@
 
 	.clickedBack {
 		     transform: perspective(400px) rotateY(0deg);
-	         position:absolute;
-	         transition:transform .5s linear 0s;
-	         /*background-color:grey;*/
+	         transition:transform 0.5s linear 0s;
 	         backface-visibility: hidden;
-	         /*border: 5px outset grey;
-*/	     	 } 
+	         
+	     	 } 
 	
