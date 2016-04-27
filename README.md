@@ -11,6 +11,9 @@
 
 ##### - I am adding a "reset board" button, so that the player can restart the game over at any point. The reset button also deletes the number of moves of any previous game.
 
-##### - I am adding the option to select the difficulty of the game. Depending on the difficulty, the number of tiles will readjust.
+##### - I am adding the option to select the difficulty of the game. Depending on the difficulty, the number of tiles will readjust. (a shoutout to Robert Bunch and a personal reminder: if you are creating multiple similar variables (and you use letters to name them), make damn sure that you don't use the same letters as your iteration variables. It makes your life miserable, and debugging your code a f***ing pain in the a**!!!)
 
 ##### - I am also adding custom messages based on difficulty, and the number of moves it took the user to win the game.
+
+##### - Next step... Make your game responsive, so it works with all screen sizes.
+
