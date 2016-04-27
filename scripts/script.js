@@ -17,6 +17,7 @@
 		var wrapper;
 		var content;
 		var beginBtn = document.getElementById("begin");
+		var resetBtn = document.getElementById("reset");
 		var singTileId;
 ///////////////////////////USER PERFORMANCE VARIABLES//////////////////////////////
 		var moveCount = 0;
@@ -28,7 +29,7 @@
 		var random;
 //////////////////////////ACTION BEGINS///////////////////////////////////////////
 		beginBtn.addEventListener("click", letTheGameBegin, false); // Adding event listener to my begin button
-		
+		resetBtn.addEventListener("click", reset, false);
 
 		Array.prototype.shuffle = function() { // Creating a new shuffle method for Array objects
 			for(i = 0; i < 7; i++) {
@@ -61,7 +62,7 @@
 				miniCont.appendChild(child1);
 				miniCont.appendChild(child2);
 				container.appendChild(miniCont);
-				// console.log(container); //GREAT SUCCESS!!!
+				//console.log(container.children.length); //GREAT SUCCESS!!!
 
 			}
 			
@@ -71,7 +72,16 @@
 					
 			}
 		}
-		function flipTile (e) {
+
+		function reset () {
+			container = document.getElementById("container");
+			moveCount = 0;
+			moveCountHold = document.getElementById("moves").innerHTML = "Your Moves : " + moveCount;
+			container.innerHTML = "";
+			
+		}
+
+		function flipTile () {
 
 			if(flippedArray.length < 2) {
 

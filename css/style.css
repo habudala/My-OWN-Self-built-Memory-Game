@@ -20,9 +20,16 @@
 	img {width:240px;
 		height:200px;
 		border:5px outset grey;
+		/*backface-visibility: :hidden;*/
 	    }
 
 	#begin  {text-align:center;
+			 border:3px outset grey;
+			 font-size:20px;
+			 margin:auto;
+			 margin-bottom:20px;}
+
+	#reset  {text-align:center;
 			 border:3px outset grey;
 			 font-size:20px;
 			 margin:auto;
@@ -34,33 +41,37 @@
 			 display:inline-block;
 			 			 }
 	.front  {position:absolute;
-			 transform: rotateY(0deg); /*UNNECESSARYMITS 0 BY DEFAULT */
-			 background-color:grey;
+			 transform: perspective(400px) rotateY(0deg); /*UNNECESSARY ITS 0 BY DEFAULT */
+			 background: linear-gradient(to left,white,grey);
 			 width:240px;
 			 height:200px;
 			 backface-visibility: hidden;
 			 border:5px outset grey;
-			 transition:transform .5s linear 0s;}
-
+			 transition: transform .5s linear 0s;}
+		
 	.back  {position:absolute;
-			 transform: rotateY(180deg);
+			 transform: perspective(400px) rotateY(180deg);
 			 width:240px;
 			 height:200px;
-			 background-color: grey;
 			 backface-visibility: hidden;
+			 background-color: grey;
 			 border:5px outset grey;
 			 transition:transform .5s linear 0s;}
 
 	.clickedFront {
-		     transform: perspective(300px) rotateY(-180deg); /* gives depth to the flipping motion*/
-		     position:absolute;
-		    
+		   
+		    background-color:grey;
+		    transition:transform 0.5s linear 0s;
+		    backface-visibility: hidden;
+		    transform: perspective(400px) rotateY(-180deg); /* persp. gives depth to the flipping motion*/
 		 	 }
 
 	.clickedBack {
-		     transform: perspective(300px) rotateY(0deg);
+		     transform: perspective(400px) rotateY(0deg);
 	         position:absolute;
-	        /* transition:transform .5s linear 0s;*/
-	         
-	     	 } 
+	         transition:transform .5s linear 0s;
+	         /*background-color:grey;*/
+	         backface-visibility: hidden;
+	         /*border: 5px outset grey;
+*/	     	 } 
 	
